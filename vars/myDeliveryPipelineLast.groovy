@@ -6,8 +6,8 @@ def call(body) {
     body()
 
     pipeline {
-        //agent { label 'first_slave' }
-        agent any
+        agent { label 'first_slave' }
+        //agent any
         stages {
           stage('Docker build') {
             steps {
