@@ -26,15 +26,8 @@ def call(body) {
           stage('SSH Conection') {
             steps{
               script{
-                sshagent(credentials: ['kubernetes']){
-                  sh """ssh root@192.3.50.101 <<<EOF
-                    kubectl apply -f ${config.urlYaml} && kubectl set image deployment.v1.apps/${config.name}-deploy ${config.name}=192.3.50.170:8083/qa-${config.name}-image:v1.0.$BUILD_NUMBER -n kube-${config.namespace}  --record=true
-                    exit
-                    EOF"""
-                  //sh "ssh root@192.3.50.101 'kubectl apply -f ${config.urlYaml} && kubectl set image deployment.v1.apps/${config.name}-deploy ${config.name}=192.3.50.170:8083/qa-${config.name}-image:v1.0.$BUILD_NUMBER -n kube-${config.namespace}  --record=true'"    
-                }
+                sh "ssh root@192.3.50.101 'kubectl apply -f ${config.urlYaml} && kubectl set image deployment.v1.apps/${config.name}-deploy ${config.name}=192.3.50.170:8083/qa-${config.name}-image:v1.0.$BUILD_NUMBER -n kube-${config.namespace}  --record=true'"
               }
-              //sh "ssh root@192.3.50.101 'kubectl apply -f ${config.urlYaml} && kubectl set image deployment.v1.apps/${config.name}-deploy ${config.name}=192.3.50.170:8083/qa-${config.name}-image:v1.0.$BUILD_NUMBER -n kube-${config.namespace}  --record=true'"
             }
           } 
         }    
