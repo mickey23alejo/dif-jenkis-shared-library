@@ -20,15 +20,19 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker
-                  command: 
-                  - cat
+                  image: docker:18.05-dind
+                  volumeMounts:
+                  - name: dind-storage
+                    mountPath: /var/lib/docker
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
                   command:
                   - cat
                   tty: true
+                volumes:
+                  - name: dind-storage
+                    emptyDir: {}
                 """
             }
         }
