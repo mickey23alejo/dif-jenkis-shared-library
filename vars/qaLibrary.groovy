@@ -19,8 +19,8 @@ def call(body) {
               spec:
                 serviceAccount: cd-jenkins
                 containers:
-                - name: buildah
-                  image: buildah/buildah
+                - name: docker
+                  image: docker
                   command: 
                   - cat
                   tty: true
@@ -33,11 +33,11 @@ def call(body) {
             }
         }
         stages {
-            stage('Buildah build') {
+            stage('docker build') {
                 steps {
-                    container('buildah'){
+                    container('docker'){
                             sh "cd $WORKSPACE"
-                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
