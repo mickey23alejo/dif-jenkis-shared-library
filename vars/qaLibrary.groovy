@@ -21,7 +21,8 @@ def call(body) {
                 containers:
                 - name: docker
                   image: docker:dind
-                  command: ["dockerd"]
+                  command: 
+                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
