@@ -21,18 +21,14 @@ def call(body) {
                 containers:
                 - name: docker
                   image: docker:18.05-dind
-                  volumeMounts:
-                  - name: dind-storage
-                    mountPath: /var/lib/docker
+                  command: 
+                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
                   command:
                   - cat
                   tty: true
-                volumes:
-                  - name: dind-storage
-                    emptyDir: {}
                 """
             }
         }
