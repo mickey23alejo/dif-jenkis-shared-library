@@ -19,8 +19,8 @@ def call(body) {
               spec:
                 serviceAccount: cd-jenkins
                 containers:
-                - name: docker
-                  image: docker
+                - name: podman
+                  image: marshallford/podman
                   command: 
                   - cat
                   tty: true
@@ -37,7 +37,7 @@ def call(body) {
                 steps {
                     container('docker'){
                             sh "cd $WORKSPACE"
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "podman build -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER -f Dockerfile ."
                     }
                 }
             }
