@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:dind
+                  image: docker-dev
                   command: 
                   - cat
                   tty: true
