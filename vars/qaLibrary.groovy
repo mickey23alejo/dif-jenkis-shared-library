@@ -52,8 +52,9 @@ def call(body) {
             stage('oc-client') {
                 steps {
                     container('oc-client'){
-                            sh "oc login https://api.ocp4mqa.grupodifare.com:6443 --insecure-skip-tls-verify=true --username='kubeadmin' --password='n2oxM-poryD-ew92Y-a2tFn'"
-                            sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
+                            sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
+                            sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1 oc set image deployment.v1.apps/deployment-test-ci nginx=nginx:alpine -n test1 --record=true "
+                            
                     }
                 }
             }
