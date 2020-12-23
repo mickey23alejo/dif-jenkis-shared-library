@@ -39,7 +39,7 @@ def call(body) {
                     container('buildah'){
                             //sh "cd $WORKSPACE"
                             //sh "docker images"
-                            sh "build bud -f Dockerfile -t qa-1234 ."
+                            sh "buildah bud -f Dockerfile -t qa-1234 ."
                             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
