@@ -22,7 +22,7 @@ def call(body) {
                 - name: docker
                   image: docker
                   command:
-                  - cat
+                  - service docker start
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
@@ -36,7 +36,7 @@ def call(body) {
             stage('Docker build') {
                 steps {
                     container('docker'){
-                            sh "service docker start"
+                            // sh "service docker start"
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
