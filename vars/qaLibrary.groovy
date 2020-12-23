@@ -33,30 +33,30 @@ def call(body) {
             }
         }
         stages {
-            stage('Connect to nexus'){
-              steps{
-                sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8082'
-                sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8083'
-              }
-            }
-            stage('Docker build') {
-                steps {
-                    container('docker'){
-                            sh "cd $WORKSPACE"
-                            //sh "docker images"
-                            //sh "buildah bud -f Dockerfile -t qa-1234 ."
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    }
-                }
-            }
-            // stage('oc-client') {
-              //
+            // stage('Docker build') {
             //     steps {
-            //         container('oc-client'){
-            //                 sh "oc login https://api.ocp4mqa.grupodifare.com:6443 --insecure-skip-tls-verify=true --username='kubeadmin' --password='n2oxM-poryD-ew92Y-a2tFn'"
+            //         container('docker'){
+            //                 sh "cd $WORKSPACE"
+            //                 sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
             //         }
             //     }
             // }
+            
+            //stage('Connect to nexus'){
+            //   steps{
+            //     sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8082'
+            //     sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8083'
+            //   }
+            // }
+
+            stage('oc-client') {
+                steps {
+                    container('oc-client'){
+                            sh "oc login https://api.ocp4mqa.grupodifare.com:6443 --insecure-skip-tls-verify=true --username='kubeadmin' --password='n2oxM-poryD-ew92Y-a2tFn'"
+                            sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
+                    }
+                }
+            }
         }
       }
 }
