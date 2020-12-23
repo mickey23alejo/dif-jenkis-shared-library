@@ -33,6 +33,12 @@ def call(body) {
             }
         }
         stages {
+            stage('Connect to nexus'){
+              steps{
+                sh "'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8082
+                     echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8083'"
+              }
+            }
             stage('Docker build') {
                 steps {
                     container('docker'){
