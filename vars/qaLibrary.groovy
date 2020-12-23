@@ -36,6 +36,7 @@ def call(body) {
             stage('Docker build') {
                 steps {
                     container('docker'){
+                            sh "start docker"
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
