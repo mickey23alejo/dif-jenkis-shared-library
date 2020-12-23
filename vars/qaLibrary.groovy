@@ -19,8 +19,8 @@ def call(body) {
               spec:
                 serviceAccount: cd-jenkins
                 containers:
-                - name: docker
-                  image: docker
+                - name: buildah
+                  image: buildah/buildah
                   command: 
                   - cat
                   tty: true
@@ -33,22 +33,15 @@ def call(body) {
             }
         }
         stages {
-            stage('Docker build') {
+            stage('Buildah build') {
                 steps {
-                    container('docker'){
+                    container('buildah'){
                             sh "cd $WORKSPACE"
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "buildah --debug bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
             
-            //stage('Connect to nexus'){
-            //   steps{
-            //     sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8082'
-            //     sh 'echo $NEXUS_PASSWORD | login -u $NEXUS_USER --password-stdin 10.100.43.10:8083'
-            //   }
-            // }
-
             // Validado
             // stage('oc-client') {
             //     steps {
