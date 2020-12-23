@@ -45,6 +45,7 @@ def call(body) {
                 }
             }
             // stage('oc-client') {
+              //
             //     steps {
             //         container('oc-client'){
             //                 sh "oc login https://api.ocp4mqa.grupodifare.com:6443 --insecure-skip-tls-verify=true --username='kubeadmin' --password='n2oxM-poryD-ew92Y-a2tFn'"
