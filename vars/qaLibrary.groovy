@@ -37,7 +37,7 @@ def call(body) {
                 steps {
                     container('buildah'){
                             sh "cd $WORKSPACE"
-                            sh "buildah --debug bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
