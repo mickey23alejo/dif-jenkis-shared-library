@@ -33,14 +33,14 @@ def call(body) {
             }
         }
         stages {
-            // stage('Docker build') {
-            //     steps {
-            //         container('docker'){
-            //                 sh "cd $WORKSPACE"
-            //                 sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-            //         }
-            //     }
-            // }
+            stage('Docker build') {
+                steps {
+                    container('docker'){
+                            sh "cd $WORKSPACE"
+                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    }
+                }
+            }
             
             //stage('Connect to nexus'){
             //   steps{
@@ -49,16 +49,17 @@ def call(body) {
             //   }
             // }
 
-            stage('oc-client') {
-                steps {
-                    container('oc-client'){
-                            sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
-                            sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
-                            sh "oc set image deployment.v1.apps/deployment-test-ci nginx=nginx -n test1 --record=true"
+            // Validado
+            // stage('oc-client') {
+            //     steps {
+            //         container('oc-client'){
+            //                 sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
+            //                 sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
+            //                 sh "oc set image deployment.v1.apps/deployment-test-ci nginx=nginx -n test1 --record=true"
                             
-                    }
-                }
-            }
+            //         }
+            //     }
+            // }
         }
       }
 }
