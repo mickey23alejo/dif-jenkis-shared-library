@@ -35,11 +35,12 @@ def call(body) {
         stages {
             stage('Docker build') {
                 steps {
+                  sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                   //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER . "
-                    container('buildah'){
-                            sh "cd $WORKSPACE"
-                            //sh "docker images"
-                            sh "buildah bud -f Dockerfile -t qa-1234 ."
+                    // container('buildah'){
+                    //         sh "cd $WORKSPACE"
+                    //         //sh "docker images"
+                    //         sh "buildah bud -f Dockerfile -t qa-1234 ."
                             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
