@@ -35,7 +35,7 @@ def call(body) {
         stages {
             stage('docker build') {
                 steps {
-                    container('docker'){
+                    container('podman'){
                             sh "cd $WORKSPACE"
                             sh "podman build -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER -f Dockerfile ."
                     }
