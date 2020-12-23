@@ -37,7 +37,7 @@ def call(body) {
                 steps {
                     container('docker'){
                             // sh "docker run --privileged -d docker:dind"
-                            // sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
