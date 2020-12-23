@@ -19,8 +19,8 @@ def call(body) {
               spec:
                 serviceAccount: cd-jenkins
                 containers:
-                - name: docker
-                  image: docker:dind
+                - name: buildah
+                  image: buildah/buildah:latest
                   command: 
                   - cat
                   tty: true
@@ -35,13 +35,13 @@ def call(body) {
         stages {
             stage('Docker build') {
                 steps {
-                  sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER . "
-                    // container('docker'){
-                    //         sh "cd $WORKSPACE"
-                    //         sh "docker images"
-                    //         sh "docker build -f Dockerfile -t qa-1234 ."
-                    //         //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    // }
+                  //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER . "
+                    container('buildah'){
+                            //sh "cd $WORKSPACE"
+                            //sh "docker images"
+                            sh "build bud -f Dockerfile -t qa-1234 ."
+                            //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    }
                 }
             }
             // stage('oc-client') {
