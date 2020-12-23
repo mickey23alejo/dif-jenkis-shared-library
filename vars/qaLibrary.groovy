@@ -22,7 +22,7 @@ def call(body) {
                 - name: docker
                   image: docker
                   command:
-                  - service docker start
+                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
