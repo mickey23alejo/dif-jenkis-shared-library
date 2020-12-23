@@ -35,12 +35,13 @@ def call(body) {
         stages {
             stage('Docker build') {
                 steps {
-                    container('docker'){
-                            sh "cd $WORKSPACE"
-                            sh "docker images"
-                            sh "docker build -f Dockerfile -t qa-1234 ."
-                            //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    }
+                  sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER . "
+                    // container('docker'){
+                    //         sh "cd $WORKSPACE"
+                    //         sh "docker images"
+                    //         sh "docker build -f Dockerfile -t qa-1234 ."
+                    //         //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    // }
                 }
             }
             // stage('oc-client') {
