@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker
+                  image: docker:dind
                   command:
                   - cat
                   tty: true
@@ -36,8 +36,6 @@ def call(body) {
             stage('Docker build') {
                 steps {
                     container('docker'){
-                            sh 'chmod 777 /var/run/docker.sock'
-                            sh 'su docker version'
                             // sh "docker run --privileged -d docker:dind"
                             // sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
