@@ -20,12 +20,12 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:18.09.7-dind
-                  services:
-                  - docker:18.09.7-dind
+                  image: 18.09.7-dind
                   variables:
                     DOCKER_HOST: tcp://localhost:2375/
                     DOCKER_DRIVER: overlay
+                  command: 
+                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
