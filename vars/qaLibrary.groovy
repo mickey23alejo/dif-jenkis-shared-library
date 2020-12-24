@@ -38,30 +38,30 @@ def call(body) {
             }
         }
         stages {
-            // stage('docker build') {
-            //     steps {
-            //         container('buildah'){
-            //                 sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-            //         }
-            //     }
-            //     // steps {
-            //     //     container('docker'){
-            //     //             //sh "docker ps"
-            //     //             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-            //     //     }
-            //     // }
-            // }
-            
-            // Validado
-            stage('oc-client') {
+            stage('docker build') {
                 steps {
-                    container('oc-client'){
-                            sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
-                            sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
-                            sh "oc set image deployment.v1.apps/deployment-test-ci nginx=nginx:alpine -n test1 --record=true"
+                    container('buildah'){
+                            sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
+                // steps {
+                //     container('docker'){
+                //             //sh "docker ps"
+                //             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                //     }
+                // }
             }
+            
+            // Validado
+            // stage('oc-client') {
+            //     steps {
+            //         container('oc-client'){
+            //                 sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
+            //                 sh "oc apply -f $WORKSPACE/jenkins/deployment.yml -n test1"
+            //                 sh "oc set image deployment.v1.apps/deployment-test-ci nginx=nginx:alpine -n test1 --record=true"
+            //         }
+            //     }
+            // }
         }
       }
 }
