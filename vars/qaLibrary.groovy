@@ -29,17 +29,28 @@ def call(body) {
                   command:
                   - cat
                   tty: true
+                - name: podman
+                  image: marshallford/podman:latest
+                  command:
+                  - cat
+                  tty: true
                 """
             }
         }
         stages {
             stage('docker build') {
                 steps {
-                    container('docker'){
-                            sh "docker ps"
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    container('podman'){
+                            // sh "podman ps"
+                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
+                // steps {
+                //     container('docker'){
+                //             sh "docker ps"
+                //             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                //     }
+                // }
             }
             
             // Validado
