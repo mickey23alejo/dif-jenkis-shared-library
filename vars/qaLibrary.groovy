@@ -47,7 +47,7 @@ def call(body) {
                 steps {
                     container('docker'){
                             //sh "docker ps"
-                            sh "/usr/bin/docker docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "/usr/bin/docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
