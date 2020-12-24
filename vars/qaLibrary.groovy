@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:17.05 
+                  image: shadowx4fox/jenkins-did-agent 
                   command:
                   - cat
                   tty: true
@@ -47,7 +47,7 @@ def call(body) {
                 steps {
                     container('docker'){
                             //sh "docker ps"
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "/usr/bin/docker docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
