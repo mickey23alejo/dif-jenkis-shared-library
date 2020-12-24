@@ -29,8 +29,8 @@ def call(body) {
                   command:
                   - cat
                   tty: true
-                - name: podman
-                  image: marshallford/podman:latest
+                - name: buildah
+                  image: buildah/buildah
                   command:
                   - cat
                   tty: true
@@ -40,10 +40,8 @@ def call(body) {
         stages {
             stage('docker build') {
                 steps {
-                    container('podman'){
-                            sh "buildha info"
-                            // sh "podman ps"
-                            //sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    container('buildah'){
+                            sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
                 // steps {
