@@ -20,11 +20,12 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:19.03.1
+                  image: docker:18.09.7-dind
                   services:
-                  - docker:19.03.1-dind
+                  - docker:18.09.7-dind
                   variables:
-                    DOCKER_HOST: tcp://docker:2375
+                    DOCKER_HOST: tcp://localhost:2375/
+                    DOCKER_DRIVER: overlay
                   command: 
                   - cat
                   tty: true
