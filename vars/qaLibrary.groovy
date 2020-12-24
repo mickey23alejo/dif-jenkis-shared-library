@@ -6,43 +6,40 @@ def call(body) {
     body()
 
     pipeline {
-      //   agent {
-		  // kubernetes {
-			// label 'algo-slave'
-			// yaml """
-      //         apiVersion: v1
-      //         kind: Pod
-      //         metadata:
-      //           labels:
-      //             jenkins-agent: algo-jnlp-slave
-      //             jenkins/algo-slave: true
-      //         spec:
-      //           serviceAccount: cd-jenkins
-      //           containers:
-      //           - name: docker
-      //             image: docker:18.09.7-dind
-      //             services:
-      //             - docker:18.09.7-dind
-      //             variables:
-      //               DOCKER_HOST: tcp://localhost:2375/
-      //               DOCKER_DRIVER: overlay
-      //             command: 
-      //             - cat
-      //             tty: true
-      //           - name: oc-client
-      //             image: widerin/openshift-cli
-      //             command:
-      //             - cat
-      //             tty: true
-      //           - name: buildah
-      //             image: buildah/buildah
-      //             command:
-      //             - cat
-      //             tty: true
-      //           """
-      //       }
-      //   }
-        agent any
+        agent {
+		  kubernetes {
+			label 'algo-slave'
+			yaml """
+              apiVersion: v1
+              kind: Pod
+              metadata:
+                labels:
+                  jenkins-agent: algo-jnlp-slave
+                  jenkins/algo-slave: true
+              spec:
+                serviceAccount: cd-jenkins
+                containers:
+                - name: docker
+                  image: docker:18.09.7-dind
+                  variables:
+                    DOCKER_HOST: tcp://localhost:2375/
+                    DOCKER_DRIVER: overlay
+                  command: 
+                  - cat
+                  tty: true
+                - name: oc-client
+                  image: widerin/openshift-cli
+                  command:
+                  - cat
+                  tty: true
+                - name: buildah
+                  image: buildah/buildah
+                  command:
+                  - cat
+                  tty: true
+                """
+            }
+        }
         stages {
             stage('docker build') {
                 // steps {
@@ -51,10 +48,10 @@ def call(body) {
                 //     }
                 // }
                 steps {
-                    // container('docker'){
+                    container('docker'){
                             //sh "docker ps"
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    // }
+                    }
                 }
             }
             
