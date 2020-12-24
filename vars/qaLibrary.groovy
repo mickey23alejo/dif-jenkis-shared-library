@@ -21,6 +21,9 @@ def call(body) {
                 containers:
                 - name: docker
                   image: docker:18.09.7-dind
+                  variables:
+                    DOCKER_HOST: tcp://localhost:2375/
+                    DOCKER_DRIVER: overlay
                   command: 
                   - cat
                   tty: true
