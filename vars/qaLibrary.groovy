@@ -22,9 +22,6 @@ def call(body) {
                 - name: docker
                   image: docker:1.12.6 
                   command: ['docker', 'run', '-p', '80:80', 'httpd:latest']
-                  volumeMounts: 
-                  - mountPath: /var/run 
-                    name: docker-sock
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
@@ -36,10 +33,6 @@ def call(body) {
                   command:
                   - cat
                   tty: true
-                volumes: 
-                - name: docker-sock 
-                  hostPath: 
-                      path: /var/run
                 """
             }
         }
