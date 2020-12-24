@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:1.12.6 
+                  image: docker:17.05 
                   command:
                   - cat
                   tty: true
@@ -39,17 +39,17 @@ def call(body) {
         }
         stages {
             stage('docker build') {
-                steps {
-                    container('buildah'){
-                            sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    }
-                }
                 // steps {
-                //     container('docker'){
-                //             //sh "docker ps"
-                //             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                //     container('buildah'){
+                //             sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                 //     }
                 // }
+                steps {
+                    container('docker'){
+                            //sh "docker ps"
+                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    }
+                }
             }
             
             // Validado
