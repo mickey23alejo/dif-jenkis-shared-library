@@ -36,12 +36,8 @@ def call(body) {
             stage('docker build') {
                 steps {
                     container('docker'){
-                            docker.withRegistry("https://us.icr.io/api","ibm-cloud"){
-                                sh "docker run hello-world"
-                            }
-                            //sh "cd $WORKSPACE"
-                            //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            //sh "docker ps"
+                            sh "docker ps"
+                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
             }
