@@ -42,6 +42,7 @@ def call(body) {
       //           """
       //       }
       //   }
+        agent any
         stages {
             stage('docker build') {
                 // steps {
