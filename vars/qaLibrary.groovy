@@ -26,8 +26,6 @@ def call(body) {
                   variables:
                     DOCKER_HOST: tcp://localhost:2375/
                     DOCKER_DRIVER: overlay
-                  command: 
-                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
