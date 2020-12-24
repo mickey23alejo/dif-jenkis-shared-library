@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: shadowx4fox/jenkins-did-agent 
+                  image: docker 
                   command:
                   - cat
                   tty: true
