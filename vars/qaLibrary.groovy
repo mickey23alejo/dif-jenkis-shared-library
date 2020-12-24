@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:19.09.13
+                  image: docker:18.09.7-dind
                   services:
                   - docker:18.09.7-dind
                   variables:
