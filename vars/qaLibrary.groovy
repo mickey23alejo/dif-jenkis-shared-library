@@ -21,7 +21,8 @@ def call(body) {
                 containers:
                 - name: docker
                   image: docker:1.12.6 
-                  command: ['docker', 'run', '-p', '80:80', 'httpd:latest']
+                  command:
+                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
