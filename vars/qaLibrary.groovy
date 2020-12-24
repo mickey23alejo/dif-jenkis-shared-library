@@ -41,8 +41,9 @@ def call(body) {
             stage('docker build') {
                 steps {
                     container('podman'){
+                            sh "podman info"
                             // sh "podman ps"
-                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            //sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
                 // steps {
