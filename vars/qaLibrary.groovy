@@ -6,43 +6,45 @@ def call(body) {
     body()
 
     pipeline {
-        agent {
-		  kubernetes {
-			label 'algo-slave'
-			yaml """
-              apiVersion: v1
-              kind: Pod
-              metadata:
-                labels:
-                  jenkins-agent: algo-jnlp-slave
-                  jenkins/algo-slave: true
-              spec:
-                serviceAccount: cd-jenkins
-                containers:
-                - name: docker
-                  image: docker 
-                  command:
-                  - cat
-                  tty: true
-                - name: oc-client
-                  image: widerin/openshift-cli
-                  command:
-                  - cat
-                  tty: true
-                - name: buildah
-                  image: buildah/buildah
-                  command:
-                  - cat
-                  tty: true
-                """
-            }
-        }
+      agent { label 'first_slave' }
+      //   agent {
+		  // kubernetes {
+			// label 'algo-slave'
+			// yaml """
+      //         apiVersion: v1
+      //         kind: Pod
+      //         metadata:
+      //           labels:
+      //             jenkins-agent: algo-jnlp-slave
+      //             jenkins/algo-slave: true
+      //         spec:
+      //           serviceAccount: cd-jenkins
+      //           containers:
+      //           - name: docker
+      //             image: docker 
+      //             command:
+      //             - cat
+      //             tty: true
+      //           - name: oc-client
+      //             image: widerin/openshift-cli
+      //             command:
+      //             - cat
+      //             tty: true
+      //           - name: buildah
+      //             image: buildah/buildah
+      //             command:
+      //             - cat
+      //             tty: true
+      //           """
+      //       }
+      //   }
         stages {
             stage('docker build') {
                 steps {
-                    container('buildah'){
-                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                    }
+                  sh "/usr/bin/docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    // container('buildah'){
+                    //         sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    // }
                 }
                 // steps {
                 //     container('docker'){
