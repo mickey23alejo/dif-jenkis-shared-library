@@ -41,7 +41,7 @@ def call(body) {
             stage('docker build') {
                 steps {
                     container('buildah'){
-                            sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "sudo podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
                 // steps {
