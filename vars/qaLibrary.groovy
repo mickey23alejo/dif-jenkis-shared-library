@@ -49,7 +49,7 @@ def call(body) {
                     container('docker'){
                             //sh "docker ps"
                             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            sh "systemctl start docker"
+                            sh "sudo systemctl start docker"
                     }
                 }
             }
