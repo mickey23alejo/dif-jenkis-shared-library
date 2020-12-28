@@ -23,7 +23,8 @@ def call(body) {
                 - name: docker
                   image: docker:18.06.0-ce-git
                   env:
-                    DOCKER_HOST: tcp://localhost:2375
+                  - name: DOCKER_HOST 
+                    value: tcp://localhost:2375 
                   securityContext:
                     privileged: true
                   command:
