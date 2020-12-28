@@ -48,12 +48,12 @@ def call(body) {
                 // }
                 steps {
                     container('docker'){
-                            //sh "docker ps"
+                            sh "whoami"
+                            sh "docker ps"
                             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                             //sh "systemctl start docker"
                             //sh "systemctl status docker"
                             // sh "systemctl daemon-reload"
-                            sh "whoami"
 
                     }
                 }
