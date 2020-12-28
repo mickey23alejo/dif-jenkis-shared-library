@@ -13,15 +13,17 @@ def call(body) {
               apiVersion: v1
               kind: Pod
               metadata:
+                name: privileged
                 labels:
                   jenkins-agent: algo-jnlp-slave
                   jenkins/algo-slave: true
               spec:
-                privileged: true
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
                   image: docker:dind
+                  securityContext:
+                    privileged: true
                   command:
                   - cat
                   tty: true
