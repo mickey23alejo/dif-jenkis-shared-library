@@ -39,18 +39,18 @@ def call(body) {
         }
         stages {
             stage('docker build') {
-                // steps {
-                //     container('buildah'){
-                //             sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //             //sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //     }
-                // }
                 steps {
-                    container('docker'){
-                            //sh "docker ps"
-                            sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                    container('buildah'){
+                            sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            //sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                     }
                 }
+                // steps {
+                //     container('docker'){
+                //             //sh "docker ps"
+                //             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                //     }
+                // }
             }
             
             // Validado
