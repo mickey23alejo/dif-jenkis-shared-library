@@ -24,18 +24,18 @@ def call(body) {
                   image: docker:1.12.6 
                   command: ['docker', 'run', '-p', '80:80', 'httpd:latest'] 
                   resources: 
-                  requests: 
-                      cpu: 10m 
-                      memory: 256Mi 
+                    requests: 
+                        cpu: 10m 
+                        memory: 256Mi 
                   env: 
                     - name: DOCKER_HOST 
                       value: tcp://localhost:2375
                 - name: dind-daemon 
-                        image: docker:1.12.6-dind 
-                        resources: 
-                            requests: 
-                                cpu: 20m 
-                                memory: 512Mi
+                  image: docker:1.12.6-dind 
+                  resources: 
+                     requests: 
+                      cpu: 20m 
+                      memory: 512Mi
                   securityContext:
                     privileged: true
                   tty: true
