@@ -17,6 +17,7 @@ def call(body) {
                   jenkins-agent: algo-jnlp-slave
                   jenkins/algo-slave: true
               spec:
+                privileged: true
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
