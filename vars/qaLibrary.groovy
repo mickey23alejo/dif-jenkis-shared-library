@@ -21,7 +21,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:dind
+                  image: docker:18.06.0-ce-git
                   variables:
                     DOCKER_HOST: tcp://localhost:2375
                   securityContext:
