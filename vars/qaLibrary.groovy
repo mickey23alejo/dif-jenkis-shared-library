@@ -39,21 +39,22 @@ def call(body) {
         }
         stages {
             stage('docker build') {
-                // steps {
-                //     container('buildah'){
-                //             //sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //             sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //     }
-                // }
                 steps {
-                    container('docker'){
-                            //sh "docker ps"
-                            //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            //sh "systemctl start docker"
-                            //sh "systemctl status docker"
-                            sh "systemctl daemon-reload"
+                    container('buildah'){
+                            //sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            //sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "whoami"
                     }
                 }
+                // steps {
+                //     container('docker'){
+                //             //sh "docker ps"
+                //             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                //             //sh "systemctl start docker"
+                //             //sh "systemctl status docker"
+                //             sh "systemctl daemon-reload"
+                //     }
+                // }
             }
              // Validado
             // stage('oc-client') {
