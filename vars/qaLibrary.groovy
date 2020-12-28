@@ -48,6 +48,7 @@ def call(body) {
                 // }
                 steps {
                     container('docker'){
+                            sh "docker version"
                             sh "whoami"
                             sh "docker ps"
                             //sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
