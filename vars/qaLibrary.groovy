@@ -21,14 +21,23 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:18.06.0-ce-git
-                  env:
-                  - name: DOCKER_HOST 
-                    value: tcp://127.0.0.1:2375 
+                  image: docker:1.12.6 
+                  command: ['docker', 'run', '-p', '80:80', 'httpd:latest'] 
+                  resources: 
+                  requests: 
+                      cpu: 10m 
+                      memory: 256Mi 
+                  env: 
+                    - name: DOCKER_HOST 
+                      value: tcp://localhost:2375
+                - name: dind-daemon 
+                        image: docker:1.12.6-dind 
+                        resources: 
+                            requests: 
+                                cpu: 20m 
+                                memory: 512Mi
                   securityContext:
                     privileged: true
-                  command:
-                  - cat
                   tty: true
                 - name: oc-client
                   image: widerin/openshift-cli
@@ -40,6 +49,9 @@ def call(body) {
                   command:
                   - cat
                   tty: true
+                volumeMounts: 
+                  - name: docker-graph-storage 
+                    mountPath: /var/lib/docker
                 """
             }
         }
