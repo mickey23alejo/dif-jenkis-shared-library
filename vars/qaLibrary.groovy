@@ -22,6 +22,8 @@ def call(body) {
                 containers:
                 - name: docker
                   image: docker:dind
+                  variables:
+                    DOCKER_HOST: tcp://localhost:2375
                   securityContext:
                     privileged: true
                   command:
