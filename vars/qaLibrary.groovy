@@ -74,7 +74,7 @@ def call(body) {
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                             //sh "docker login -u admin --password n2oxM-poryD-ew92Y-a2tFn 10.100.43.10:8083"
                             //sh "docker login 10.128.3.113:8083"
-                             sh "docker login -u admin --password n2oxM-poryD-ew92Y-a2tFn http://10.128.3.113:8083"
+                             sh "docker login -u admin --password $NEXUS_PASSWORD http://10.128.3.113:8083"
                             //sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER 10.128.3.113:8083/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                             //sh "systemctl start docker"
                             //sh "systemctl status docker"
