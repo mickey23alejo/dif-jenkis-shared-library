@@ -21,7 +21,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:1.12.6 
+                  image: docker:18.06.2 
                   command: ['docker', 'run', '-p', '80:80', 'httpd:latest'] 
                   resources: 
                     requests: 
@@ -31,7 +31,7 @@ def call(body) {
                     - name: DOCKER_HOST 
                       value: tcp://localhost:2375
                 - name: dind-daemon 
-                  image: docker:1.12.6-dind 
+                  image: docker:18.06.2 
                   resources: 
                      requests: 
                       cpu: 20m 
