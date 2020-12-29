@@ -76,10 +76,6 @@ def call(body) {
                             //sh "docker login 10.128.3.113:8083"
                              sh "docker login -u admin --password $NEXUS_PASSWORD http://10.128.3.113:8083"
                             //sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER 10.128.3.113:8083/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
-                            //sh "systemctl start docker"
-                            //sh "systemctl status docker"
-                            // sh "systemctl daemon-reload"
-
                     }
                 }
             }
