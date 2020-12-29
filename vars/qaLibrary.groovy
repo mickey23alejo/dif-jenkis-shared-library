@@ -31,7 +31,7 @@ def call(body) {
                     - name: DOCKER_HOST 
                       value: tcp://localhost:2375
                     - name: DOCKER_OPTS
-                      value: --insecure-registry=http://10.128.3.113:8083
+                      value: --insecure-registry=http://nexus3-nexus.apps.ocp4mqa.grupodifare.com
                 - name: dind-daemon 
                   image: docker:18.09.7-dind 
                   resources: 
@@ -74,7 +74,7 @@ def call(body) {
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                             //sh "docker login -u admin --password n2oxM-poryD-ew92Y-a2tFn 10.100.43.10:8083"
                             //sh "docker login 10.128.3.113:8083"
-                             sh "docker login -u admin --password $NEXUS_PASSWORD http://10.128.3.113:8083"
+                             sh "docker login -u admin --password $NEXUS_PASSWORD http://nexus3-nexus.apps.ocp4mqa.grupodifare.com"
                             //sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER 10.128.3.113:8083/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
                 }
