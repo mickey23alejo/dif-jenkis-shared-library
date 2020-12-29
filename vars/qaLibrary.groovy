@@ -31,7 +31,7 @@ def call(body) {
                     - name: DOCKER_HOST 
                       value: tcp://localhost:2375
                     - name: DOCKER_OPTS
-                      value: insecure-registry=10.100.43.10:8083
+                      value: --insecure-registry 10.100.43.10:8081
                 - name: dind-daemon 
                   image: docker:18.09.7-dind 
                   resources: 
