@@ -84,7 +84,10 @@ def call(body) {
             stage('wget'){
               steps{
                 container('wget'){
-                  sh "echo https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesQA/job/Test.CargaMasiva2/job/%2500/lastSuccessfulBuild/buildNumber"
+                  sh '''
+                  SUCCESS_BUILD=https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesQA/job/Test.CargaMasiva2/job/%2500/lastSuccessfulBuild/buildNumber
+                  echo $SUCCESS_BUILD
+                  '''
                 }
               }
             }
