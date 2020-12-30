@@ -75,7 +75,7 @@ def call(body) {
                             //sh "docker login -u admin --password n2oxM-poryD-ew92Y-a2tFn 10.100.43.10:8083"
                             //sh "docker login 10.128.3.113:8083"
                             //sh "docker login -u admin --password $NEXUS_PASSWORD http://10.128.3.113:8083"
-                            sh "SUCCESS_BUILD=`wget -qO- --user kubeadmin --password 'n2oxM-poryD-ew92Y-a2tFn' --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/EjemploMultibranch2/lastSuccessfulBuild/buildNumber`"
+                            //sh "SUCCESS_BUILD=`wget -qO- --user 'kubeadmin' --password 'n2oxM-poryD-ew92Y-a2tFn' --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/EjemploMultibranch2/lastSuccessfulBuild/buildNumber`"
                             //sh "echo SUCCESS_BUILD = $SUCCESS_BUILD - 1"
                             //sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER 10.128.3.113:8083/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
