@@ -46,8 +46,8 @@ def call(body) {
                   command:
                   - cat
                   tty: true
-                - name: buildah
-                  image: buildah/buildah
+                - name: wget
+                  image: mwendler/wget
                   command:
                   - cat
                   tty: true
@@ -80,6 +80,13 @@ def call(body) {
                             //sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER 10.128.3.113:8083/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
                 }
+            }
+            stage('wget'){
+              steps{
+                container('wget'){
+                  sh "wget -qO- --user kubeadmin --password 'n2oxM-poryD-ew92Y-a2tFn' --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesQA/job/Test.CargaMasiva2/lastSuccessfulBuild/buildNumber"
+                }
+              }
             }
              // Validado
             // stage('oc-client') {
