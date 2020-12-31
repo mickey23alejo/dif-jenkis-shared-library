@@ -83,7 +83,8 @@ def call(body) {
             // }
             stage('wget'){
               steps{
-                  sh "$SUCCESS_BUILD"
+                  sh "SUCCESS_BUILD=hola"
+                  sh "echo SUCCESS_BUILD"
               }
             }
              // Validado
