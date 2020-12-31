@@ -59,41 +59,14 @@ def call(body) {
         }
         stages {
             stage('docker build') {
-                // steps {
-                //     container('buildah'){
-                //             //sh "podman build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //             //sh "buildah bud -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                //             sh "whoami"
-                //     }
-                // }
                 steps {
                     container('docker'){
-                            // sh "docker version"
-                            // sh "whoami"
-                            // sh "docker ps"
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            //sh "docker login -u admin --password n2oxM-poryD-ew92Y-a2tFn 10.100.43.10:8083"
-                            //sh "docker login 10.128.3.113:8083"
-                            sh "docker login -u admin --password $NEXUS_PASSWORD https://dockernp.grupodifare.com"
-                            //sh "SUCCESS_BUILD=`wget -qO- --user 'kubeadmin' --password 'n2oxM-poryD-ew92Y-a2tFn' --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/EjemploMultibranch2/lastSuccessfulBuild/buildNumber`"
-                            //sh "echo SUCCESS_BUILD = $SUCCESS_BUILD - 1"
                             sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER dockernp.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker login -u admin --password $NEXUS_PASSWORD https://dockernp.grupodifare.com"
                     }
                 }
             }
-            // stage('wget'){
-            //   steps{
-            //       sh '''
-            //       pwd
-            //       '''
-            //       // lastSuccesfulBuildId=$(cat ../../jobs/$JOB_NAME/builds/permalinks | grep lastSuccessfulBuild | sed 's/lastSuccessfulBuild //')
-            //       // container('wget'){
-            //       //     sh '$BUILDER=`wget -qO- --user kubeadmin --password n2oxM-poryD-ew92Y-a2tFn --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesDEV/job/WMS.DatosMaestros/lastSuccessfulBuild/buildNumber`'
-                      
-            //       // }
-            //       //sh "echo SUCCESS_BUILD"
-            //   }
-            // }
              // Validado
             // stage('oc-client') {
             //     steps {
