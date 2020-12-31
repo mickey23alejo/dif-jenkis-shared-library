@@ -84,7 +84,7 @@ def call(body) {
             stage('wget'){
               steps{
                   sh '''
-                  ls ../../jobs
+                  pwd
                   '''
                   // lastSuccesfulBuildId=$(cat ../../jobs/$JOB_NAME/builds/permalinks | grep lastSuccessfulBuild | sed 's/lastSuccessfulBuild //')
                   // container('wget'){
