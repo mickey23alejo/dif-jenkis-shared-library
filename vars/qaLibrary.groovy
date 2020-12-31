@@ -83,7 +83,9 @@ def call(body) {
             // }
             stage('wget'){
               steps{
-                  sh 'SUCCESS_BUILD=`wget -qO- --user kubeadmin --password "n2oxM-poryD-ew92Y-a2tFn" --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesDEV/job/WMS.DatosMaestros/lastSuccessfulBuild/buildNumber`'
+                  container('buildah'){
+                      sh 'SUCCESS_BUILD=`wget -qO- --user kubeadmin --password "n2oxM-poryD-ew92Y-a2tFn" --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesDEV/job/WMS.DatosMaestros/lastSuccessfulBuild/buildNumber`'
+                  }
                   //sh "echo SUCCESS_BUILD"
               }
             }
