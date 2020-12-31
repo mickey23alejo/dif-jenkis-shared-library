@@ -83,7 +83,7 @@ def call(body) {
             // }
             stage('wget'){
               steps{
-                  sh "SUCCESS_BUILD=`wget -qO- --user TfsSetup --password 'Tf$Setup*01' --auth-no-challenge http://192.3.50.169:8080/job/MicroservicesQA/job/TestCargaMasiva/lastSuccessfulBuild/buildNumber`"
+                  sh "SUCCESS_BUILD=`wget -qO- --user kubeadmin --password 'n2oxM-poryD-ew92Y-a2tFn' --auth-no-challenge https://jenkins-jenkins.apps.ocp4mqa.grupodifare.com/job/MicroservicesDEV/job/WMS.DatosMaestros/lastSuccessfulBuild/buildNumber`"
                   //sh "echo SUCCESS_BUILD"
               }
             }
