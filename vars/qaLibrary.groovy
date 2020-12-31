@@ -83,8 +83,8 @@ def call(body) {
             // }
             stage('wget'){
               steps{
-                  sh "SUCCESS_BUILD=hola"
-                  sh "echo SUCCESS_BUILD"
+                  sh "SUCCESS_BUILD=`wget -qO- --user TfsSetup --password 'Tf$Setup*01' --auth-no-challenge http://192.3.50.169:8080/job/MicroservicesQA/job/TestCargaMasiva/lastSuccessfulBuild/buildNumber`"
+                  //sh "echo SUCCESS_BUILD"
               }
             }
              // Validado
