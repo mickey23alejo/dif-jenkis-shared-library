@@ -46,9 +46,6 @@ def call(body) {
                   command:
                   - cat
                   tty: true
-                - name: wget
-                  image: mwendler/wget
-                  command:
                   - cat
                   tty: true
                 volumeMounts: 
