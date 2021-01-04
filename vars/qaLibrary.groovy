@@ -46,8 +46,6 @@ def call(body) {
                   command:
                   - cat
                   tty: true
-                  - cat
-                  tty: true
                 volumeMounts: 
                   - name: docker-graph-storage 
                     mountPath: /var/lib/docker
