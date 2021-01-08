@@ -8,15 +8,15 @@ def call(body) {
     pipeline {
         agent {
 		  kubernetes {
-			label 'algo-slave'
+			label 'desarrolo-slave'
 			yaml """
               apiVersion: v1
               kind: Pod
               metadata:
                 name: privileged
                 labels:
-                  jenkins-agent: algo-jnlp-slave
-                  jenkins/algo-slave: true
+                  jenkins-agent: desarrolo-jnlp-slave
+                  jenkins/desarrollo-slave: true
               spec:
                 serviceAccount: cd-jenkins
                 containers:
