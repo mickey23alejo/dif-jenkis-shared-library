@@ -58,7 +58,7 @@ def call(body) {
                             sh "docker build -f Dockerfile -t dev-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                             sh "docker login -u admin --password $NEXUS_PASSWORD https://dockerprd.grupodifare.com"
                             sh "docker tag dev-'${config.name}'-image:v1.0.$BUILD_NUMBER dockerprd.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER"
-                            sh "docker push dockernp.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker push dockerprd.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
                 }
             }
