@@ -55,10 +55,10 @@ def call(body) {
             stage('docker build') {
                 steps {
                     container('docker'){
-                            sh "docker build -f Dockerfile -t dev-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
+                            sh "docker build -f Dockerfile -t prod-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
                             sh "docker login -u admin --password $NEXUS_PASSWORD https://dockerprd.grupodifare.com"
-                            sh "docker tag dev-'${config.name}'-image:v1.0.$BUILD_NUMBER dockerprd.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER"
-                            sh "docker push dockerprd.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker tag prod-'${config.name}'-image:v1.0.$BUILD_NUMBER dockerprd.grupodifare.com/prod-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker push dockerprd.grupodifare.com/prod-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
                 }
             }
