@@ -62,7 +62,6 @@ def call(body) {
                     }
                 }
             }
-             // Validado
             stage('oc-client') {
                 steps {
                     container('oc-client'){
