@@ -62,16 +62,6 @@ def call(body) {
                     }
                 }
             }
-             // Validado
-            // stage('oc-client') {
-            //     steps {
-            //         container('oc-client'){
-            //                 sh "oc login $OC_URL --insecure-skip-tls-verify=true --username=$OC_USER --password=$OC_PASS"
-            //                 sh "oc apply -f $WORKSPACE/CI/DEV/openshift/deployment.yml -n ${config.namespace}"
-            //                 sh "oc set image deployment.v1.apps/${config.name}-deploy ${config.name}=dockernp.grupodifare.com/dev-'${config.name}'-image:v1.0.$BUILD_NUMBER -n ${config.namespace} --record=true"
-            //         }
-            //     }
-            // }
         }
       }
 }
