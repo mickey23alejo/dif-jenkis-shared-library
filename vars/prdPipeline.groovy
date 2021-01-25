@@ -14,8 +14,8 @@ def call(body) {
               metadata:
                 name: privileged
                 labels:
-                  jenkins-agent: desarrolo-jnlp-slave
-                  jenkins/desarrollo-slave: true
+                  jenkins-agent: produccion-jnlp-slave
+                  jenkins/produccion-slave: true
               spec:
                 serviceAccount: cd-jenkins
                 containers:
