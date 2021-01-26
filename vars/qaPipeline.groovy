@@ -56,7 +56,7 @@ def call(body) {
                 steps {
                     container('docker'){
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            sh "docker login -u admin --password $NEXUS_PASSWORD https://dockernp.grupodifare.com"
+                            sh "docker login -u admin --password $NEXUS_PASSWORD https://dockernp.grupodifare.com --tls-verify=false"
                             sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER dockernp.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                             sh "docker push dockernp.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
