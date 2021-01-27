@@ -30,7 +30,7 @@ def call(body) {
                     - name: DOCKER_HOST 
                       value: tcp://localhost:2375
                     - name: DOCKER_OPTS
-                      value: --insecure-registry=https://sample-nexus.apps.ocp4mqa.grupodifare.com
+                      value: --insecure-registry=https://dockernp.grupodifare.com
                 - name: dind-daemon 
                   image: docker:18.09.7-dind 
                   resources: 
@@ -56,9 +56,9 @@ def call(body) {
                 steps {
                     container('docker'){
                             sh "docker build -f Dockerfile -t qa-'${config.name}'-image:v1.0.$BUILD_NUMBER ."
-                            sh "docker login -u admin --password $NEXUS_PASSWORD https://sample-nexus.apps.ocp4mqa.grupodifare.com"
-                            sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER sample-nexus.apps.ocp4mqa.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
-                            sh "docker push sample-nexus.apps.ocp4mqa.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker login -u admin --password $NEXUS_PASSWORD https://dockernp.grupodifare.com"
+                            sh "docker tag qa-'${config.name}'-image:v1.0.$BUILD_NUMBER dockernp.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
+                            sh "docker push dockernp.grupodifare.com/qa-'${config.name}'-image:v1.0.$BUILD_NUMBER"
                     }
                 }
             }
