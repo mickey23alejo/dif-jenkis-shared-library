@@ -41,7 +41,7 @@ def call(body) {
                     privileged: true
                   tty: true
                 - name: oc-client
-                  image: widerin/openshift-cli
+                  image: ebits/openshift-client
                   command:
                   - cat
                   tty: true
