@@ -20,7 +20,7 @@ def call(body) {
                 serviceAccount: cd-jenkins
                 containers:
                 - name: docker
-                  image: docker:18.09.7
+                  image: dockernp.grupodifare.com/docker:18.09.7
                   command: ['docker', 'run', '-p', '80:80', 'httpd:latest'] 
                   resources: 
                     requests: 
@@ -32,7 +32,7 @@ def call(body) {
                     - name: DOCKER_OPTS
                       value: --insecure-registry=https://dockernp.grupodifare.com
                 - name: dind-daemon 
-                  image: docker:18.09.7-dind 
+                  image: dockernp.grupodifare.com/docker:18.09.7-dind
                   resources: 
                      requests: 
                       cpu: 20m 
@@ -41,10 +41,12 @@ def call(body) {
                     privileged: true
                   tty: true
                 - name: oc-client
-                  image: widerin/openshift-cli
+                  image: dockernp.grupodifare.com/openshift-cli
                   command:
                   - cat
                   tty: true
+                imagePullSecrets:
+                  - name: nexus-secret				
                 volumeMounts: 
                   - name: docker-graph-storage 
                     mountPath: /var/lib/docker
