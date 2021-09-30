@@ -49,7 +49,8 @@ def call(body) {
                   - name: nexus-secret
 		volumeMounts: 
                   - name: docker-graph-storage 
-                    mountPath: /var/lib/docker
+                    mountPath: 
+                    /var/lib/docker
                 """
             }
         }
