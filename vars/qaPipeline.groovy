@@ -41,7 +41,7 @@ def call(body) {
                     privileged: true
                   tty: true
                 - name: oc-client
-                  image: openshift-cli
+                  image: dockerprd.grupodifare.com/openshift-cli
                   command:
                   - cat
                   tty: true
