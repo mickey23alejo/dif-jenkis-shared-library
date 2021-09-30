@@ -46,7 +46,7 @@ def call(body) {
                   - cat
                   tty: true
                 imagePullSecrets:
-        	  - name: nexus-secret
+                  - name: nexus-secret
 		volumeMounts: 
                   - name: docker-graph-storage 
                     mountPath: /var/lib/docker
